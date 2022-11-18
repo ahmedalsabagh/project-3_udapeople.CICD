@@ -24,5 +24,6 @@
     - TYPEORM_MIGRATIONS: "{{ lookup('env', 'TYPEORM_MIGRATIONS')}}"
     - TYPEORM_MIGRATIONS_DIR: "{{ lookup('env', 'TYPEORM_MIGRATIONS_DIR')}}"
     - PORT: "{{ lookup('env', 'PORT')}}"
+    
   roles:
     - deploy
