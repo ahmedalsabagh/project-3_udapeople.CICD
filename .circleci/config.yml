@@ -1,6 +1,6 @@
 #this is Project: Give Your Application Auto-Deploy Superpowers CI/CD
 #create by: ahmed fathy alsabagh 
-
+# ahmedalsabagh@gmail.com
 version: 2.1
 
 commands:
@@ -13,16 +13,14 @@ commands:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
-  install_ansible:
+install_ansible: #we will install ansible 
     description: Install Ansible
     steps:
       - run:
           name: Install Ansible
           command: |
-            sudo apt update
-            sudo apt install software-properties-common -y
-            sudo add-apt-repository --yes --update ppa:ansible/ansible
-            sudo apt install ansible -y
+            python3 -m pip install --user ansible        
+
   install_nodejs:
     description: Install Node.js 13
     steps:
