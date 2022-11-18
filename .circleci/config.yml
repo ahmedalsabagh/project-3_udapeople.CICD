@@ -1,8 +1,8 @@
 #this is Project: Give Your Application Auto-Deploy Superpowers CI/CD
 #create by: ahmed fathy alsabagh 
 # ahmedalsabagh@gmail.com
-version: 2.1
 
+version: 2.1
 commands:
   install_awscli:
     description: Install AWS CLI v2
@@ -13,7 +13,7 @@ commands:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
-install_ansible: #we will install ansible 
+  install_ansible: #we will install ansible 
     description: Install Ansible
     steps:
       - run:
