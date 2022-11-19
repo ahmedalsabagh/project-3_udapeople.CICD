@@ -338,8 +338,8 @@ jobs:
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install    
-      -install_ansible
-      -install_nodejs
+      - install_ansible
+      - install_nodejs
       - add_ssh_keys:
           fingerprints: ["f8:90:86:da:c9:69:28:c3:ef:61:2a:f5:d8:a5:cc:2e"]
       - attach_workspace:
