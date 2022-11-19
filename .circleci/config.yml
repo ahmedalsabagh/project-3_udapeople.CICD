@@ -340,7 +340,7 @@ jobs:
       - restore_cache:
           keys: [backend-deps]
       - run:
-          name: Install dependencies
+          name:
           command: |
             cd backend
             npm install
@@ -358,7 +358,7 @@ jobs:
             export TYPEORM_MIGRATIONS_DIR=./migrations
             export TYPEORM_ENTITIES=./modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./migrations/*.ts
-            
+
             cd .circleci/ansible
             echo "Contents  of the inventory file is -------"
             cat inventory.txt
