@@ -344,6 +344,7 @@ jobs: #now we will bbuild our jobs
             
       - destroy-environment   
       - revert-migrations 
+
   smoke-test: # createe smoke-test
     docker:
       - image: amazon/aws-cli
@@ -373,7 +374,7 @@ jobs: #now we will bbuild our jobs
             echo ${URL} 
             if curl -s ${URL} | grep "Welcome"
             then
-              exit 0
+              exit 2
             else
               exit 1
             fi 
@@ -454,8 +455,8 @@ workflows:  # create workflows
           requires: [run-migrations]
       - deploy-backend:
           requires: [run-migrations]
-      # - smoke-test:
-      #     requires: [deploy-backend, deploy-frontend]
+      - smoke-test:
+          requires: [deploy-backend, deploy-frontend]
       # - cloudfront-update:
       #     requires: [smoke-test]
       # - cleanup:
