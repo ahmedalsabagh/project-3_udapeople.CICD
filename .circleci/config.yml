@@ -1,11 +1,13 @@
 #this is Project: Give Your Application Auto-Deploy Superpowers CI/CD
+#create by: ahmed fathy alsabagh 
+# ahmedalsabagh@gmail.com
 
 version: 2.1
-orbs:   #steps for connect slack email and massage 
+orbs:  
   slack: circleci/slack@4.10.1
 commands:
 
-  install_ansible: #we will install ansible 
+  install_ansible:  
     description: Install Ansible
     steps:
       - run:
@@ -13,7 +15,7 @@ commands:
           command: |
             python3 -m pip install --user ansible        
 
-  install_nodejs:  #we will install nodejs 13.8.0
+  install_nodejs:  
     description: Install Node.js 13.8.0
     steps:
       - run:
@@ -27,7 +29,7 @@ commands:
             sudo npm install --global n
             sudo n 13.8.0
             
-  revert-migrations: #this steps  for create migrations 
+  revert-migrations: 
     description: Revert the last migration
     parameters:
       Workflow_ID:
@@ -47,7 +49,7 @@ commands:
               npm run migration:revert
             fi
 
-  destroy-environment: #step for create destroy-environment
+  destroy-environment: 
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
     parameters:
       Workflow_ID:
@@ -62,8 +64,8 @@ commands:
             aws s3 rm "s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7}" --recursive
             aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
 
-jobs: #now we will bbuild our jobs
-  build-frontend: # create build-frontend
+jobs: 
+  build-frontend: 
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -80,7 +82,7 @@ jobs: #now we will bbuild our jobs
           paths: [frontend/node_modules]
           key: frontend-deps
 
-  build-backend: # create build-backend
+  build-backend: 
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -97,7 +99,7 @@ jobs: #now we will bbuild our jobs
           paths: [backend/node_modules]
           key: backend-deps
 
-  test-frontend: # create tests-frontend
+  test-frontend: 
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -111,7 +113,7 @@ jobs: #now we will bbuild our jobs
             npm install
             npm run test
                 
-  test-backend: # create test-backend
+  test-backend: 
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -125,7 +127,7 @@ jobs: #now we will bbuild our jobs
             npm install
             npm run test
 
-  scan-frontend:  # create scan-frontend
+  scan-frontend:  
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -145,7 +147,7 @@ jobs: #now we will bbuild our jobs
           event: fail
           template: basic_fail_1
 
-  scan-backend: # create scan-backend
+  scan-backend: 
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -166,7 +168,7 @@ jobs: #now we will bbuild our jobs
           event: fail
           template: basic_fail_1
 
-  deploy-infrastructure: # create deploy-infrastructure
+  deploy-infrastructure: 
     docker:
       - image: amazon/aws-cli
     steps:
@@ -206,7 +208,7 @@ jobs: #now we will bbuild our jobs
             - project/.circleci/ansible/inventory.txt
       - destroy-environment
 
-  configure-infrastructure:  # create configure-infrastructure
+  configure-infrastructure:  
     docker:
       - image: python:3.7-alpine3.11
     steps:
@@ -226,7 +228,7 @@ jobs: #now we will bbuild our jobs
             ansible-playbook .circleci/ansible/configure-server.yml -i .circleci/ansible/inventory.txt
       - destroy-environment
 
-  run-migrations: # create run-migrations
+  run-migrations:
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -260,7 +262,7 @@ jobs: #now we will bbuild our jobs
       - revert-migrations
       - destroy-environment
 
-  deploy-frontend: # create deploy-frontend
+  deploy-frontend:
     docker:
       - image: cimg/node:13.8.0
     steps:
@@ -293,7 +295,7 @@ jobs: #now we will bbuild our jobs
             aws s3 cp dist s3://udapeople-${CIRCLE_WORKFLOW_ID:0:7} --recursive
       - destroy-environment
 
-  deploy-backend: # create deploy-backend
+  deploy-backend:
     docker:
       - image: cimg/python:3.10
     steps:
@@ -345,7 +347,7 @@ jobs: #now we will bbuild our jobs
       - destroy-environment   
       - revert-migrations 
 
-  smoke-test: # createe smoke-test
+  smoke-test:
     docker:
       - image: amazon/aws-cli
     steps:
@@ -381,7 +383,7 @@ jobs: #now we will bbuild our jobs
       - destroy-environment 
       - revert-migrations
 
-  cloudfront-update: # create cloudfront-update
+  cloudfront-update:
     docker:
       - image: amazon/aws-cli
     steps:
@@ -404,7 +406,7 @@ jobs: #now we will bbuild our jobs
       - destroy-environment
       - revert-migrations  
       
-  cleanup: # createe cleanup
+  cleanup:
     docker:
       - image: amazon/aws-cli
     steps:
@@ -430,7 +432,7 @@ jobs: #now we will bbuild our jobs
               echo cant clean
             fi
 
-workflows:  # create workflows
+workflows:
   my-workflow:
     jobs:
       - build-frontend
