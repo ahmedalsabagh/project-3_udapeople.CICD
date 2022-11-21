@@ -1,21 +1,24 @@
- Public Url to GitHub repository 
+ URL01 
+-Public Url to GitHub repository 
  https://github.com/ahmedalsabagh/project-3_udapeople.CICD
 ****************************
-Public URL for your S3 Bucket
-(https://us-east-1.console.aws.amazon.com/s3/buckets/udapeople-8604923?region=us-east-1&tab=objects)
+ URL02
+-Public URL for your S3 Bucket
+(https://s3.console.aws.amazon.com/s3/buckets/udapeople-2d60687?region=us-east-1&tab=objects)
 **********************
-front-end url 
-(http://udapeople-8604923.s3-website-us-east-1.amazonaws.com)
+-front-end url 
+(http://udapeople-a0a0ef7.s3-website-us-east-1.amazonaws.com)
 ***********************
-cloudfront url 
-(http://d37878hxk9138t.cloudfront.net/#/employees)
+ URL03
+-cloudfront url 
+(http://d6b875d9epdt6.cloudfront.net/#/employees)
 ***********************
-endpoint for database 
-(database-1.c9qlajyw5c4b.us-east-1.rds.amazonaws.com)
+-endpoint for database 
+(dudapeople-db.c8xiq8k1wpvv.us-east-1.rds.amazonaws.com)
 ****************************
-url for promesues
- ((http://ec2-34-201-145-226.compute-1.amazonaws.com:9090/new/targets ))
+-url for promesues
+ ( http://ec2-35-171-25-4.compute-1.amazonaws.com:9090 )
 ********************************
-url with puplic ip
-http://34.201.145.226:9090/new/targets
+-url with puplic ip
+http://34.239.104.107:3030/api/status
 *****************************
